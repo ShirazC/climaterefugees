@@ -80,7 +80,7 @@ ul {
   list-style: none;
   width: 25%;
   height: 100%;
-  transition: all 0.3s;
+  transition: all 0.8s;
 }
 
 .accordion li a {
@@ -89,7 +89,7 @@ ul {
   height: 100%;
   background: no-repeat center center #ccc;
   background-size: cover;
-  transition: all 0.3s;
+  transition: all 0.01s;
   /*-webkit-filter: saturate(0);*/
   /*filter: saturate(0);*/
 }
@@ -200,13 +200,40 @@ ul {
     		projection: 'mercator',
     		fills: {
     			defaultFill: "#d0dcef",
-    			authorHasTraveledTo: "#ABDDA4",
+    			authorHasTraveledTo: "rgb(200,45,90)",
     			authorPlannedTraveledTo: "#0000ff"
   			},
 
   			geographyConfig: {
   				borderColor: '#FFFFFF'
-  			}
+  			},
+  			data: {
+		    USA: { fillKey: "authorHasTraveledTo" },
+		    CUB: { fillKey: "authorHasTraveledTo" },
+		    RUS: { fillKey: "authorHasTraveledTo" },
+		    IND: { fillKey: "authorHasTraveledTo" },
+		    CHN: { fillKey: "authorHasTraveledTo" },
+		    KOR: { fillKey: "authorHasTraveledTo" },
+		    NGA: { fillKey: "authorHasTraveledTo" },
+		    BRA: { fillKey: "authorHasTraveledTo" },
+		    CAN: { fillKey: "authorHasTraveledTo" },
+		    MEX: { fillKey: "authorHasTraveledTo" },
+		    SYR: { fillKey: "authorHasTraveledTo" },
+		    AUS: { fillKey: "authorHasTraveledTo" }
+
+
+
+
+		},
+    done: function(datamap) {
+    datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+      location.href=geography.id + '.html';
+      console.log("geoid", geography.id);
+      // var m = {};
+      // m[geography.id] = '#000000';
+      // datamap.updateChoropleth(m);
+  });
+}
   		});
 </script>
 </section>
