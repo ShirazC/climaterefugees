@@ -5,21 +5,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-<script src="../climaterefugees/js/datamaps.hires.min.js"></script>
+<script src="./js/datamaps.hires.min.js"></script>
 <!-- <script>
     var map = new Datamap({element: document.getElementById('container')});
 </script> -->
 <script>
 
+//initiate accordion style hovering
 function expand(){
-		$(".accordion li a").mouseenter(function() {
-$(".accordion li").removeClass("active");
-$(this).closest("li").addClass("active");
-});
+	$(".accordion li a").mouseenter(function() {
+    $(".accordion li").removeClass("active").addClass("grayscale");
+    $(this).closest("li").addClass("active").removeClass("grayscale");
+  });
 }
 
+// Add smooth scrolling to all links
 $(document).ready(function(){
-  // Add smooth scrolling to all links
+  
   $("a").on('click', function(event) {
 
     // Make sure this.hash has a value before overriding default behavior
@@ -68,10 +70,14 @@ ul {
   padding: 0;
 }
 
+.grayscale{
+  filter: blur(5px) grayscale(1);
+}
+
 .accordion {
   display: flex;
   width: 100%;
-  height: 590px;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -118,7 +124,13 @@ ul {
 .accordion li.active a {
   -webkit-filter: saturate(100%);
   filter: saturate(100%);
+
 }
+
+.accordion li.active .according-img{
+  filter: grayscale(100%);
+}
+
 .accordion li.active .accordion-img:hover {
   transform: translate(-15%, 0px);
   -webkit-transition:  ease-in-out .3s;
@@ -126,6 +138,12 @@ ul {
 }
 .accordion li.active .accordion-img img {
 /*   transform: translateX(-50%); */
+
+}
+
+.accordion li.active .accordion-img span {
+  transform: translate(100%, 0px);
+  -webkit-transition: ease-in-out 1.5s;
 }
 
 
@@ -147,8 +165,8 @@ ul {
 		background-color: black;
 	}
 	.landing_page{
-				background-image: url("images.jpg");
-		    -webkit-background-size: cover;
+		background-image: url("images.jpg");
+		-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
@@ -168,12 +186,22 @@ ul {
 
 	}
 
+
 	.fa-arrow-circle-o-down:hover{
 		transform: translateY(-10px);
 	}
 
+  .aboutthis{
+    position: absolute;
+    background-color: transparent;
+    letter-spacing: -1px; 
+    top: 50%;
+    padding-left: 60px;
+
+  }
+
 	</style>
-	<link rel="stylesheet" href="../climaterefugees/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
 
 	
 
@@ -194,9 +222,9 @@ ul {
 	<div class="container1" id="container1" style="position: relative; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.2);"></div>
 	<script>
 	
-    var map = new Datamap(
-    	{
+    var map = new Datamap({
     		element: document.getElementById('container1'),
+      
     		projection: 'mercator',
     		fills: {
     			defaultFill: "#d0dcef",
@@ -207,8 +235,35 @@ ul {
   			geographyConfig: {
   				borderColor: '#FFFFFF'
   			},
+        done: function(datamap) {
+          datamap.svg.selectAll('.datamaps-subunit').on('click', function(geo, data) {
+    
+
+            try{ 
+              if(typeof map.options.data[geo.id] != undefined){
+                if(map.options.data[geo.id].fillKey == "authorHasTraveledTo" ){
+                  location.href=geo.id + '.html';
+                }
+              }
+            }
+            catch(e){
+              console.log(geo.properties.name);
+            }
+
+      // if(map.options.data[geo.id].fillKey == "authorHasTraveledTo"){
+      //   console.log("ayyyye lmao");
+      // }
+      
+      // console.log("country color", map.options.data[geo.id].fillKey);
+      // console.log("geoid", geo.id);
+      
+      // var m = {};
+      // m[geography.id] = '#000000';
+      // datamap.updateChoropleth(m);
+        });
+      },
   			data: {
-		    USA: { fillKey: "authorHasTraveledTo" },
+		    USA: { fillKey: 'authorHasTraveledTo'},
 		    CUB: { fillKey: "authorHasTraveledTo" },
 		    RUS: { fillKey: "authorHasTraveledTo" },
 		    IND: { fillKey: "authorHasTraveledTo" },
@@ -219,22 +274,14 @@ ul {
 		    CAN: { fillKey: "authorHasTraveledTo" },
 		    MEX: { fillKey: "authorHasTraveledTo" },
 		    SYR: { fillKey: "authorHasTraveledTo" },
-		    AUS: { fillKey: "authorHasTraveledTo" }
+		    AUS: { fillKey: "authorPlannedTraveledTo" }
 
+		  },
 
-
-
-		},
-    done: function(datamap) {
-    datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-      location.href=geography.id + '.html';
-      console.log("geoid", geography.id);
-      // var m = {};
-      // m[geography.id] = '#000000';
-      // datamap.updateChoropleth(m);
-  });
-}
-  		});
+  	});
+    //  $(window).on('resize', function() {
+    //    map.resize();
+    // });
 </script>
 </section>
 <section class="howtohelp">
@@ -243,28 +290,29 @@ ul {
   <li>
     <a href="javascript:expand();">
       <div class="accordion-img">
-        <img src="../climaterefugees/images/image1.jpg">
+        <img src="./images/image1.jpg">
+        <span class="aboutthis"><h2>ABOUT</h2></span>
       </div>
     </a>
   </li>
   <li>
     <a href="javascript:expand();">
       <div class="accordion-img">
-        <img src="../climaterefugees/images/image2.jpg">
+        <img src="./images/image2.jpg">
       </div>
     </a>
   </li>
   <li>
     <a href="javascript:expand();">
       <div class="accordion-img">
-        <img src="../climaterefugees/images/image3.jpg">
+        <img src="./images/image3.jpg">
       </div>
     </a>
   </li>
   <li>
     <a href="javascript:expand();">
       <div class="accordion-img">
-        <img src="../climaterefugees/images/image4.jpg">
+        <img src="./images/image4.jpg">
       </div>
     </a>
   </li>
