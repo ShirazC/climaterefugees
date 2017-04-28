@@ -141,8 +141,16 @@ ul {
 
 }
 
-.accordion li.active .accordion-img span {
+.accordion li.active .accordion-img .aboutthis {
   transform: translate(100%, 0px);
+  -webkit-transition: ease-in-out 1.5s;
+}
+.accordion li.active .accordion-img .centerthis {
+  transform: translate(80%, 0px);
+  -webkit-transition: ease-in-out 1.5s;
+}
+.accordion li.active .accordion-img .centerthis {
+  transform: translate(10%, 0px);
   -webkit-transition: ease-in-out 1.5s;
 }
 
@@ -192,6 +200,22 @@ ul {
 	}
 
   .aboutthis{
+    position: absolute;
+    background-color: transparent;
+    letter-spacing: -1px; 
+    top: 50%;
+    padding-left: 60px;
+
+  }
+   .centerthis{
+    position: absolute;
+    background-color: transparent;
+    letter-spacing: -1px; 
+    top: 50%;
+    padding-left: 60px;
+
+  }
+   .endthis{
     position: absolute;
     background-color: transparent;
     letter-spacing: -1px; 
