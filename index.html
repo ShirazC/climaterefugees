@@ -42,8 +42,18 @@ $(document).ready(function(){
         window.location.hash = hash;
       });
     } // End if
-  });
+  })
 });
+
+function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+    document.getElementsByTagName("body")[0].style.overflow = "hidden";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+    document.getElementsByTagName("body")[0].style.overflow = "scroll";
+}
 </script>
 	<style type="text/css">
 	* { margin: 0; padding: 0; }
@@ -228,6 +238,56 @@ ul {
     line-height: 5px;
  }
 
+ .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(38,50,56);
+    /*background-color: rgba(38,50,56, 0.9);*/
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
 	</style>
 	<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
 
@@ -247,7 +307,9 @@ ul {
 	</div>
 </section>
 <section id="about">
+
 	<div class="container1" id="container1" style="position: relative; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.2);"></div>
+
 	<script>
 	
     var map = new Datamap({
@@ -270,7 +332,23 @@ ul {
             try{ 
               if(typeof map.options.data[geo.id] != undefined){
                 if(map.options.data[geo.id].fillKey == "authorHasTraveledTo" ){
-                  location.href=geo.id + '.html';
+                  //location.href=geo.id + '.html';
+                  
+                  // else(){
+                  //   document.getElementsByTagName("body")[0].style.overflow = "scroll";
+                  // }
+                  openNav();
+
+                  //  var ifrm = document.createElement("iframe");
+                  // ifrm.setAttribute("src", geo.id + '.html');
+                  // ifrm.style.display = "block";
+                  // ifrm.style.position = "absolute";
+                  // ifrm.style.zIndex = "100";
+                  // ifrm.style.width = "640px";
+                  // ifrm.style.height = "480px";
+                  // document.body.appendChild(ifrm);
+                  //<iframe id="gameIFrame1" style="width: 200px; height: 200px;   display: block; position: absolute;" src="http://www.guguncube.com">
+// </iframe>
                 }
               }
             }
@@ -311,6 +389,7 @@ ul {
     //    map.resize();
     // });
 </script>
+<!-- <span style="font-size:30px;cursor:pointer;color: white;" onclick="openNav()">&#9776; open</span> -->
 </section>
 <section class="howtohelp">
 
@@ -349,6 +428,18 @@ ul {
   </li>
 </ul>
 </section>
+<div>
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+   <a href="#"> Suh Dude <a>
+    <!-- <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a> -->
+  </div>
+</div>
+</div>
 
 </body>
 </html>
