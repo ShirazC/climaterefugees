@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    suh
+  </title>
+
+  <style type="text/css">
+
+
+    *{
+  margin:0;
+  padding:0;
+}
+
+/*
+Width of image : 500;
+Width of hovered image: 500
+Width of unhovered image: 25x;
+Width of container : 500 + 50*4 = 700px;
+Default 700/5 : 140px;
+*/
+
+section{
+    height: 100vh;
+  width: 100vw;
+}
+
+.suh{
+  background-color: yellow;
+}
+
+.duh{
+  background-color: red;
+}
+.accordian{
+  width: 100vw;
+  height: 100vh;
+/*   overflow:hidden; */
+  
+/*   margin: 100px auto; */
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0px 8px 6px -6px black;
+}
+.accordian ul{
+  
+}
+.accordian li{
+  position: relative;
+  display:block;
+  width:24vw;
+  float: left;
+  
+  border-left: 1px solid #888;
+  -webkit-box-shadow: 0 0 25px 10px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 0 25px 10px rgba(0,0,0,0.5);
+  
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+
+.accordian ul:hover li{
+  width: 6vw;
+}
+
+.accordian ul li:hover{
+  width:80vw;
+}
+
+.accordian li img{
+  display: block;
+}
+
+.image_title{
+  background: rgba(0,0,0,0.5);
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:80vw;
+}
+
+.image_title a{
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding:20px;
+  font-size:16px;
+}
+
+img{
+  height: 100vh;
+  width: 100vw;
+}
+
+
+
+  </style>
+</head>
+<body>
+<section class="suh">
+</section>
+<section class = "duh">
+<div class="accordian">
+  <ul>
+    <li>
+      <div class="image_title">
+        <a href="#">THE CRISIS</a>
+      </div>
+      <a href="#">
+     <img src="./images/image4.jpg">
+      </a>
+    </li>
+       <li>
+      <div class="image_title">
+        <a href="#">THE NEEDS</a>
+      </div>
+      <a href="#">
+     <img src="./images/image2.jpg">
+      </a>
+    </li>
+          <li>
+      <div class="image_title">
+        <a href="#">THE PEOPLE</a>
+      </div>
+      <a href="#">
+     <img src="./images/image3.jpg">
+      </a>
+    </li>
+             <li>
+      <div class="image_title">
+        <a href="#">THE SOLUTIONS</a>
+      </div>
+      <a href="#">
+     <img src="./images/image1.jpg">
+      </a>
+    </li>
+  </ul>
+</div>
+</section>
+</body>
+</html>
+
